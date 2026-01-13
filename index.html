@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ระบบยืมอุปกรณ์กีฬา โรงเรียนพุทธิรังสีพิบูล</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Prompt', sans-serif;
+    background: #f5f5f5;
+}
+
+.header {
+    width: 100%;
+    background: #007df1;
+    padding: 10px 0 20px 0;
+    text-align: center;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 5px;
+    border-radius: 50%;
+    background: white;
+    padding: 5px;
+}
+
+.form-box {
+    width: 90%;
+    max-width: 850px;
+    background: white;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 8px;
+    margin-bottom: 18px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+}
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+.item-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: 0.25s;
+    position: relative;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.item-card img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.item-name {
+    font-size: 17px;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.item-price {
+    color: #0099FF;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.select-btn {
+    width: 100%;
+    padding: 10px;
+    background: #007df1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.select-btn:hover {
+    background: #007df1;
+}
+
+.item-selected {
+    border: 2px solid #007df1;
+    box-shadow: 0 0 12px rgba(255,87,34,0.5);
+}
+
+.submit-btn {
+    margin-top: 25px;
+    width: 100%;
+    padding: 15px;
+    background: #007df1;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #007df1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <img src="https://www.phutti.ac.th/new/images/ptlogo.png" alt="Logo โรงเรียน">
+     ยืมอุปกรณ์กีฬา (โรงเรียนพุทธิรังสีพิบูล)
+</div>
+
+<div class="form-box">
+    <label>👤 ชื่อผู้ยืม</label>
+    <input type="text" id="borrower" placeholder="กรอกชื่อผู้ยืม">
+
+    <label>🏅 เลือกอุปกรณ์กีฬา</label>
+
+    <div class="items-grid">
+
+        <div class="item-card" onclick="selectItem('ฟุตบอล', this)">
+            <img src="https://e7.pngegg.com/pngimages/584/332/png-clipart-american-football-jersey-football-ball-sport-monochrome.png" alt="">
+            <div class="item-name">⚽ ฟุตบอล</div>
+            <div class="item-price">ฟรี</div>
+            <button class="select-btn">เลือก</button>
+        </div>
+
+        <div class="item-card" onclick="selectItem('บาสเกตบอล', this)">
+            <img src="https://www.shutterstock.com/image-photo/basketball-ball-isolated-on-white-600nw-2492633873.jpg"">
+            <div class="item-name">🏀 บาสเกตบอล</div>
+            <div class="item-price">ฟรี</div>
+            <button class="select-btn">เลือก</button>
+        </div>
+
+        <div class="item-card" onclick="selectItem('วอลเลย์บอล', this)">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEHfObkUrHGbUDs1XHvWLaQ6ALhFoy1vhZqw&s" alt="">
+            <div class="item-name">🏐 วอลเลย์บอล</div>
+            <div class="item-price">ฟรี</div>
+            <button class="select-btn">เลือก</button>
+        </div>
+
+        <div class="item-card" onclick="selectItem('ปิงปอง', this)">
+            <img src="https://png.pngtree.com/png-clipart/20201225/ourmid/pngtree-original-hand-painted-sports-table-tennis-racket-png-image_2611689.jpg" alt="">
+            <div class="item-name">🏓 ปิงปอง</div>
+            <div class="item-price">ฟรี</div>
+            <button class="select-btn">เลือก</button>
+        </div>
+
+        <div class="item-card" onclick="selectItem('เชือกกระโดด', this)">
+            <img src="https://superexportshop.org/cdn/shop/products/bigman-skipping-rope-classic-black-897825.png?v=1649591320&width=533" alt="">
+            <div class="item-name">🪢 เชือกกระโดด</div>
+            <div class="item-price">ฟรี</div>
+            <button class="select-btn">เลือก</button>
+        </div>
+
+    </div>
+
+    <label>📅 วันที่ยืม</label>
+    <input type="date" id="date">
+
+    <button class="submit-btn" onclick="sendToDiscord()">📨 บันทึกการยืม</button>
+</div>
+
+<script>
+let selectedItem = "";
+
+function selectItem(name, card) {
+    selectedItem = name;
+
+    document.querySelectorAll(".item-card").forEach(c => {
+        c.classList.remove("item-selected");
+    });
+
+    card.classList.add("item-selected");
+}
+
+const DISCORD_WEBHOOK_URL =
+"https://discordapp.com/api/webhooks/1444683050607837326/03MLghTEsrjL_1T7bjne6ATyALbOnR5fhfgnsyXXivC5-GKAOt1pP-oRgVhqMgVhzNEf";
+
+function sendToDiscord() {
+    const borrower = document.getElementById("borrower").value;
+    const date = document.getElementById("date").value;
+
+    if (!borrower || !date || !selectedItem) {
+        alert("⚠ กรุณากรอกข้อมูลให้ครบ");
+        return;
+    }
+
+    // ส่งข้อความโดยไม่ใส่รูป
+    const msg = {
+        embeds: [{
+            title: "📣 มีการยืมอุปกรณ์กีฬา",
+            color: 15105570,
+            fields: [
+                { name: "👤 ผู้ยืม", value: borrower },
+                { name: "🏅 อุปกรณ์", value: selectedItem },
+                { name: "📅 วันที่ยืม", value: date }
+            ],
+            timestamp: new Date()
+        }]
+    };
+
+    fetch(DISCORD_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(msg)
+    })
+    .then(() => {
+        alert("✅ บันทึกสำเร็จ!");
+        document.getElementById("borrower").value = "";
+        document.getElementById("date").value = "";
+        selectedItem = "";
+        document.querySelectorAll(".item-card").forEach(c => c.classList.remove("item-selected"));
+    })
+    .catch(err => {
+        alert("❌ ส่งข้อมูลล้มเหลว");
+        console.error(err);
+    });
+}
+</script>
+
+</body>
+</html>
