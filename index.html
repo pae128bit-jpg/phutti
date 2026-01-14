@@ -3,6 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ระบบยืมอุปกรณ์กีฬา</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Prompt', sans-serif;
+    background: #f2f4f7;
+}
+
+/* ===== Login ===== */ 
+.login-box {
+    max-width: 360px;
+    margin: 100px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background: #007df1;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ===== Main Page ===== */
+.main {
+    display: none;
+}
+
+.header {
+    background: #007df1;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    position: relative;
+}
+
+.logout {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background: white;
+    color: #007df1;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.box {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.1);
+}
+
+.hidden {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== LOGIN PAGE ===== -->
+<div class="login-box" id="loginPage">
+    <h2>🔐 เข้าสู่ระบบ</h2>
+    <input type="text" id="username" placeholder="ชื่อผู้ใช้">
+    <input type="password" id="password" placeholder="รหัสผ่าน">
+    <button onclick="login()">เข้าสู่ระบบ</button>
+</div>
+
+<!-- ===== MAIN PAGE ===== -->
+<div class="main" id="mainPage">
+
+    <div class="header">
+        ระบบยืมอุปกรณ์กีฬา
+        <button class="logout" onclick="logout()">ออกจากระบบ</button>
+    </div>
+
+    <div class="box">
+       <!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ระบบยืมอุปกรณ์กีฬา โรงเรียนพุทธิรังสีพิบูล</title>
 
 <style>
@@ -255,6 +366,45 @@ function sendToDiscord() {
         alert("❌ ส่งข้อมูลล้มเหลว");
         console.error(err);
     });
+}
+</script>
+
+</body>
+</html>
+
+
+</div>
+
+<script>
+/* ===== USER ACCOUNT ===== */
+const USERNAME = "pae";
+const PASSWORD = "1234";
+
+/* ===== CHECK LOGIN ===== */
+if (localStorage.getItem("loggedIn") === "true") {
+    showMain();
+}
+
+function login() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+
+    if (user === USERNAME && pass === PASSWORD) {
+        localStorage.setItem("loggedIn", "true");
+        showMain();
+    } else {
+        alert("❌ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+    }
+}
+
+function showMain() {
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("mainPage").style.display = "block";
+}
+
+function logout() {
+    localStorage.removeItem("loggedIn");
+    location.reload();
 }
 </script>
 
